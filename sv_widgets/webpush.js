@@ -190,7 +190,8 @@ $.widget("sv.webpush", $.sv.widget, {
                     webpushwidget.initializeUI();
                 })
                 .catch(function (error) {
-                    console.error('Service Worker Error', error);
+                    console.error('Service Worker Registration Error', error);
+                    webpushwidget.pushButton.textContent = 'Push Not Supported';
                 });
         } else {
             console.warn('Push messaging is not supported');

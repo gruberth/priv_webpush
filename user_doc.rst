@@ -10,8 +10,11 @@ Fall. Lediglich bei einigen mobilen Android Geräten unterstützt der Standardbr
 z.B. der MiBrowser auf Xiaomi Android Geräten. Für den größten Funktionsumfang von web push Nachrichten wird jedoch
 der Chrome Browser empfohlen.
 
+Der web push Dienst erfordert SSL Verschlüsselung, auch bei selbst signierten Zertifikaten gibt es bei manchen Browsern
+wie dem Chrome Probleme. Firefox hingegen funktioniert mit https über selbst signierte Zertifikate.
+
 ACHTUNG:
-Der Firefox Browser auf Android enthält einen Bug, weshalb web push Nachrichten nicht zugestellt werden. Dazu
+Der Firefox Browser auf Android enthält einen Bug, weshalb web push Nachrichten nicht immer zugestellt werden. Dazu
 gibt es jedoch schon seit einiger Zeit ein Issue (https://github.com/mozilla-mobile/fenix/issues/19152).
 
 
@@ -46,12 +49,18 @@ Für die Kommunikation und die Übertragung der Einstellungen vom Plugin an die 
 webpush.basic Struct in der Konfiguration enthalten sein, ohne diese startet das Plugin nicht. Weiters sind diese
 drei Items auch die notwendigen Parameter für das webpush.config Widget.
 
+.. code-block:: yaml
+
+    System:
+        webpush:
+            struct: webpush.basic
+
 Funktionen
 ~~~~~~~~~~
 
 Logik Funktion zum senden einer Nachricht an eine Gruppe:
 
-**sendPushNotification(msg, group, title, ...)**
+**sh.webpush.sendPushNotification(msg, group, title, ...)**
 
 Für eine genaue Beschreibung aller Parameter, bitte die aus der plugin.yaml erzeugte Dokumentation beachten.
 Infos zum web push Standard sind unter folgenden Links zu finden:
@@ -88,7 +97,7 @@ Eine Beispielhafte Verwendung könnte dabei so aussehen:
 
 .. code-block:: html
 
-    {{ webpush.config('', 'webpush.config.grouplist', 'webpush.config.publickey', 'webpush.comunication.fromclient', 'Übernehmen') }}
+    {{ webpush.config('', 'System.webpush.config.grouplist', 'System.webpush.config.publickey', 'System.webpush.comunication.fromclient', 'Übernehmen') }}
 
 
 Web Interface
