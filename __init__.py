@@ -27,13 +27,17 @@
 import os
 import json
 import sqlite3
-import py_vapid
-from cryptography.hazmat.primitives import serialization
 from lib.module import Modules
 from lib.model.smartplugin import *
-
 import cherrypy
-from pywebpush import webpush, WebPushException
+
+import warnings
+from cryptography.utils import CryptographyDeprecationWarning
+with warnings.catch_warnings():
+    warnings.filterwarnings('ignore', category=CryptographyDeprecationWarning)
+    import py_vapid
+    from pywebpush import webpush, WebPushException
+    from cryptography.hazmat.primitives import serialization
 
 
 class WebPush(SmartPlugin):
