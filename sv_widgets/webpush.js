@@ -179,23 +179,28 @@ $.widget("sv.webpush", $.sv.widget, {
     },
 
     registerWorker: function () {
-        if ('serviceWorker' in navigator && 'PushManager' in window) {
-            if (webpushwidget.verbose)
-                console.log('Service Worker and Push are supported');
-            navigator.serviceWorker.register('dropins/widgets/webpush_serviceworker.js')
-                .then(function (swReg) {
-                    if (webpushwidget.verbose)
-                        console.log('Service Worker is registered', swReg);
-                    webpushwidget.swRegistration = swReg;
-                    webpushwidget.initializeUI();
-                })
-                .catch(function (error) {
-                    console.error('Service Worker Registration Error', error);
-                    webpushwidget.pushButton.textContent = 'Push Not Supported';
-                });
+        if ('serviceWorker' in navigator) {
+            if ('PushManager' in window) {
+                if (webpushwidget.verbose)
+                    console.log('Service Worker and Push are supported');
+                navigator.serviceWorker.register('dropins/widgets/webpush_serviceworker.js')
+                    .then(function (swReg) {
+                        if (webpushwidget.verbose)
+                            console.log('Service Worker is registered', swReg);
+                        webpushwidget.swRegistration = swReg;
+                        webpushwidget.initializeUI();
+                    })
+                    .catch(function (error) {
+                        console.error('Service Worker Registration Error', error);
+                        webpushwidget.pushButton.textContent = 'Push Not Supported';
+                    });
+            } else {
+            console.warn('Push Manager not in window');
+            webpushwidget.pushButton.textContent = 'Push Not Supported';
+            }
         } else {
-            console.warn('Push messaging is not supported');
-            this.pushButton.textContent = 'Push Not Supported';
+            console.warn('Service Worker not in navigator');
+            webpushwidget.pushButton.textContent = 'Push Not Supported';
         }
     }
 });
