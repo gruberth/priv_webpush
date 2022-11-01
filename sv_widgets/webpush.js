@@ -1,4 +1,6 @@
-let webpushwidget = null;
+if (!window.hasOwnProperty('webpushwidget')) {
+    window.webpushwidget = null;
+}
 
 $.widget("sv.webpush", $.sv.widget, {
     initSelector: 'div[data-widget="webpush.config"]',
