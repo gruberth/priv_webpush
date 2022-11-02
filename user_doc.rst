@@ -62,6 +62,17 @@ Logik Funktion zum senden einer Nachricht an eine Gruppe:
 
 **sh.webpush.sendPushNotification(msg, group, title, ...)**
 
+Die Funktion kann aber auch in einem eval Ausdruck verwendet werden, dazu ist der returnval Parameter hilfreich z.B.:
+
+.. code-block:: yaml
+
+  TestBool:
+    type: bool
+    eval: sh.webpush.sendPushNotification("Test Bool", "info", "INFO Bool", returnval=value)
+  TestNum:
+    type: num
+    eval: sh.webpush.sendPushNotification("Test Num = 100", "alarm", "ALARM Num", returnval=value) if int(value)==100 else value
+
 Für eine genaue Beschreibung aller Parameter, bitte die aus der plugin.yaml erzeugte Dokumentation beachten.
 Infos zum web push Standard sind unter folgenden Links zu finden:
 
