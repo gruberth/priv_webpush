@@ -361,7 +361,7 @@ class WebPush(SmartPlugin):
     # ------------------------------------------
 
     def sendPushNotification(self, msg, group, title="", url="", requireInteraction=True, icon="", badge="", image="",
-                             silent=False, vibrate=[], ttl=604800, highpriority=True):
+                             silent=False, vibrate=[], ttl=604800, highpriority=True, returnval=True):
         # options from https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification
         data = {"body": msg,
                 "title": title,
@@ -414,6 +414,8 @@ class WebPush(SmartPlugin):
 
         self.logger.info("To {0}/{1} subscribers of group {2} successfully send.".format(
             counter, len(subscriptionlist), group))
+
+        return returnval
 
     # ------------------------------------------
     #    Webinterface methods of the plugin

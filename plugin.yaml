@@ -160,6 +160,12 @@ plugin_functions:
                 description:
                     de: "Durch setzten des headers Urgency auf high steigt die Priorität am Server und Client mit der die Nachricht bearbeitet wird."
                     en: "The header urgency is being set to high so the message gets a higher processing priority on server and client side."
+            returnval:
+                type: any
+                default: True
+                description:
+                    de: "Wert der von der Funktion zurückgegeben werden soll, damit ist es möglich die Funktion auch in eval ausdrücken zu verwenden und dennoch die Änderung auf 'value' des Items zu übernehmen."
+                    en: "Return value of the function, this gives the possibility to use the function in an eval statement and accept the changes of the item to 'value'."
 
 logic_parameters: NONE
     # Definition of logic parameters defined by this plugin (enter 'logic_parameters: NONE', if section should be empty)
