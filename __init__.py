@@ -351,7 +351,7 @@ class WebPush(SmartPlugin):
         dbConn = sqlite3.connect(self.databasePath)
         self.logger.info("Unsubscribing all")
         c = dbConn.cursor()
-        sql = "DELETE FROM subscriptions WHERE TRUE"
+        sql = "DELETE FROM subscriptions"
         c.execute(sql)
         dbConn.commit()
         dbConn.close()
