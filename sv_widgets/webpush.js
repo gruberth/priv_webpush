@@ -185,7 +185,23 @@ $.widget("sv.webpush", $.sv.widget, {
             if ('PushManager' in window) {
                 if (webpushwidget.verbose)
                     console.log('Service Worker and Push are supported');
-                navigator.serviceWorker.register('dropins/widgets/webpush_serviceworker.js')
+
+                // check where to search for the serviceworker file
+                var url = 'dropins/shwidgets/webpush_serviceworker.js';
+                var http = new XMLHttpRequest();
+                http.open('HEAD', url, false);
+                http.send();
+                if (http.status == 404){
+                    url = 'dropins/widgets/webpush_serviceworker.js';
+                    http.open('HEAD', url, false);
+                    http.send();
+                    if (http.status == 404){
+                        console.warn('Service Worker file not found in dropins/widgets/ or dropins/shwidgets/');
+                        webpushwidget.pushButton.textContent = 'Could not find ServiceWorker';
+                        return
+                    }
+                }
+                navigator.serviceWorker.register(url)
                     .then(function (swReg) {
                         if (webpushwidget.verbose)
                             console.log('Service Worker is registered', swReg);

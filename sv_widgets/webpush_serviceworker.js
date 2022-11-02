@@ -1,8 +1,6 @@
 'use strict';
 
-if (!window.hasOwnProperty('openURLClick')) {
-    window.openURLClick = "";
-}
+let openURLClick = "";
 
 self.addEventListener('push', function (event) {
     console.log('[Service Worker] Push Received.');
