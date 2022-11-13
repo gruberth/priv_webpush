@@ -76,24 +76,34 @@ Die Funktion kann aber auch in einem eval Ausdruck verwendet werden, dazu ist de
 Für eine genaue Beschreibung aller Parameter, bitte die aus der plugin.yaml erzeugte Dokumentation beachten.
 Infos zum web push Standard sind unter folgenden Links zu finden:
 
-https://www.rfc-editor.org/rfc/rfc8030.txt
+[1] https://www.rfc-editor.org/rfc/rfc8030.txt
 
-https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification
+[2] https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification
 
-https://developer.mozilla.org/en-US/docs/Web/API/Push_API
+[3] https://developer.mozilla.org/en-US/docs/Web/API/Push_API
 
-Weitere Infos zum highpriority Parameter der die Urgency von normal auf high stellt:
+Weitere Infos (aus [1] Seite 12) zum highpriority Parameter der die Urgency von normal auf high stellt:
 
-   +----------+-----------------------------+--------------------------+
-   | Urgency  | Device State                | Example Application      |
-   |          |                             | Scenario                 |
-   +----------+-----------------------------+--------------------------+
-   | very-low | On power and Wi-Fi          | Advertisements           |
-   | low      | On either power or Wi-Fi    | Topic updates            |
-   | normal   | On neither power nor Wi-Fi  | Chat or Calendar Message |
-   | high     | Low battery                 | Incoming phone call or   |
-   |          |                             | time-sensitive alert     |
-   +----------+-----------------------------+--------------------------+
+.. list-table:: Urgency Parameter
+   :widths: 15 45 40
+   :header-rows: 1
+
+   * - Urgency
+     - Device State
+     - Example Application Scenario
+   * - very-low
+     - On power and Wi-Fi
+     - Advertisements
+   * - low
+     - On either power or Wi-Fi
+     - Topic updates
+   * - normal
+     - On neither power nor Wi-Fi
+     - Chat or Calendar Message
+   * - high
+     - Low battery
+     - Incoming phone call or time-sensitive alert
+
 
 SV Widget
 ---------
