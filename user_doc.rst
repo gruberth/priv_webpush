@@ -61,7 +61,7 @@ Funktionen
 Logik Funktion zum senden einer Nachricht an eine Gruppe:
 
 **sh.webpush.sendPushNotification** (msg, group, title="", url="", requireInteraction=True, icon="", badge="", image="",
-silent=False, vibrate=[], ttl=604800, highpriority=True, returnval=True)
+silent=False, vibrate=[], ttl=604800, highpriority=True, returnval=True, timestamp=True)
 
 Die Funktion kann aber auch in einem eval oder on_change bzw. on_update Ausdruck verwendet werden, dazu ist der
 returnval Parameter hilfreich z.B.:

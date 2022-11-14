@@ -30,6 +30,7 @@ import sqlite3
 from lib.module import Modules
 from lib.model.smartplugin import *
 import cherrypy
+from datetime import datetime
 
 import warnings
 from cryptography.utils import CryptographyDeprecationWarning
@@ -361,8 +362,13 @@ class WebPush(SmartPlugin):
     # ------------------------------------------
 
     def sendPushNotification(self, msg, group, title="", url="", requireInteraction=True, icon="", badge="", image="",
-                             silent=False, vibrate=[], ttl=604800, highpriority=True, returnval=True):
+                             silent=False, vibrate=[], ttl=604800, highpriority=True, returnval=True, timestamp=True):
         # options from https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/showNotification
+
+        if timestamp:
+            dt_string = datetime.now().strftime("[%d.%m.%Y %H:%M:%S]\n")
+            msg = dt_string + msg
+
         data = {"body": msg,
                 "title": title,
                 "url": url,

@@ -166,6 +166,12 @@ plugin_functions:
                 description:
                     de: "Wert der von der Funktion zurückgegeben werden soll, damit ist es möglich die Funktion auch in eval ausdrücken zu verwenden und dennoch die Änderung auf 'value' des Items zu übernehmen."
                     en: "Return value of the function, this gives the possibility to use the function in an eval statement and accept the changes of the item to 'value'."
+            timestamp:
+                type: bool
+                default: True
+                description:
+                    de: "Legt fest ob zu Beginn der Nachricht ein Zeitstempel angefügt werden soll"
+                    en: "Specify if a timestamp should be added at the beginning of the message"
 
 logic_parameters: NONE
     # Definition of logic parameters defined by this plugin (enter 'logic_parameters: NONE', if section should be empty)
