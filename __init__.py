@@ -51,7 +51,7 @@ class WebPush(SmartPlugin):
     are already available!
     """
 
-    PLUGIN_VERSION = '1.0.0'  # (must match the version specified in plugin.yaml), use '1.0.0' for your initial plugin Release
+    PLUGIN_VERSION = '1.1.0'  # (must match the version specified in plugin.yaml), use '1.0.0' for your initial plugin Release
 
     ITEM_COMMUNICATION = "webpush_communication"
     ITEM_CONFIG = "webpush_config"
