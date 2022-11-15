@@ -34,6 +34,7 @@ from datetime import datetime
 
 import warnings
 from cryptography.utils import CryptographyDeprecationWarning
+
 with warnings.catch_warnings():
     warnings.filterwarnings('ignore', category=CryptographyDeprecationWarning)
     import py_vapid
@@ -240,13 +241,11 @@ class WebPush(SmartPlugin):
                                                                                                                source,
                                                                                                                dest))
 
-                type = self.get_iattr_value(item.conf, self.ITEM_COMMUNICATION).lower()
-
                 if item == self.fromClientItem:
-                    self.processMessageFromClient(item_value)
-
                     # clear communication item
                     item('', self.get_shortname())
+                    # process stored message
+                    self.processMessageFromClient(item_value)
 
     # ------------------------------------------
     #    Methods of the plugin
@@ -301,7 +300,7 @@ class WebPush(SmartPlugin):
         self.logger.info("Subscribing: {0} to {1}".format(sessionId, group))
         dbConn = sqlite3.connect(self.databasePath)
         c = dbConn.cursor()
-        sql = 'INSERT INTO subscriptions (sessionId, subscription, subscriptiongroup) VALUES ("{0}", "{1}", "{2}")'\
+        sql = 'INSERT INTO subscriptions (sessionId, subscription, subscriptiongroup) VALUES ("{0}", "{1}", "{2}")' \
             .format(sessionId, subscription, group)
         c.execute(sql)
         dbConn.commit()
@@ -312,7 +311,7 @@ class WebPush(SmartPlugin):
         c = dbConn.cursor()
         for group in groups:
             self.logger.info("Subscribing: {0} to {1}".format(sessionId, group))
-            sql = 'INSERT INTO subscriptions (sessionId, subscription, subscriptiongroup) VALUES ("{0}", "{1}", "{2}")'\
+            sql = 'INSERT INTO subscriptions (sessionId, subscription, subscriptiongroup) VALUES ("{0}", "{1}", "{2}")' \
                 .format(sessionId, subscription, group)
             c.execute(sql)
         dbConn.commit()
@@ -322,7 +321,7 @@ class WebPush(SmartPlugin):
         self.logger.info("Unsubscribing: {0} from {1}".format(sessionId, group))
         dbConn = sqlite3.connect(self.databasePath)
         c = dbConn.cursor()
-        sql = "DELETE FROM subscriptions WHERE sessionId = '{0}' AND subscriptiongroup = '{1}'"\
+        sql = "DELETE FROM subscriptions WHERE sessionId = '{0}' AND subscriptiongroup = '{1}'" \
             .format(sessionId, group)
         c.execute(sql)
         dbConn.commit()
@@ -332,7 +331,7 @@ class WebPush(SmartPlugin):
         self.logger.info("Unsubscribing: {0}".format(sessionId))
         dbConn = sqlite3.connect(self.databasePath)
         c = dbConn.cursor()
-        sql = "DELETE FROM subscriptions WHERE sessionId = '{0}'"\
+        sql = "DELETE FROM subscriptions WHERE sessionId = '{0}'" \
             .format(sessionId)
         c.execute(sql)
         dbConn.commit()
@@ -342,7 +341,7 @@ class WebPush(SmartPlugin):
         self.logger.info("Unsubscribing by subscription: {0}".format(subscription))
         dbConn = sqlite3.connect(self.databasePath)
         c = dbConn.cursor()
-        sql = 'DELETE FROM subscriptions WHERE subscription = "{0}"'\
+        sql = 'DELETE FROM subscriptions WHERE subscription = "{0}"' \
             .format(subscription)
         c.execute(sql)
         dbConn.commit()
