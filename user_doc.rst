@@ -10,8 +10,9 @@ Fall. Lediglich bei einigen mobilen Android Geräten unterstützt der Standardbr
 z.B. der MiBrowser auf Xiaomi Android Geräten. Für den größten Funktionsumfang von web push Nachrichten wird jedoch
 der Chrome Browser empfohlen.
 
-Der web push Dienst erfordert SSL Verschlüsselung, auch bei selbst signierten Zertifikaten gibt es bei manchen Browsern
-wie dem Chrome Probleme. Firefox hingegen funktioniert mit https über selbst signierte Zertifikate.
+**Der web push Dienst erfordert SSL Verschlüsselung.** Auch selbst signierte Zertifikate werden bei manchen
+Browsern wie z.B. dem Chrome nicht akzeptiert, Firefox hingegen funktioniert mit https über selbst signierte
+Zertifikate.
 
 ACHTUNG:
 Der Firefox Browser auf Android enthält einen Bug, weshalb web push Nachrichten nicht immer zugestellt werden. Dazu
@@ -82,10 +83,11 @@ returnval Parameter hilfreich z.B.:
   TestNumChange:
     type: num
     on_change:
+      - sh.webpush.sendPushNotification("Test Num = 50", "alarm", "ALARM Num", returnval=None) if int(value)==50 else None
       - sh.webpush.sendPushNotification("Test Num = 100", "alarm", "ALARM Num", returnval=None) if int(value)==100 else None
 
-
 Für eine genaue Beschreibung aller Parameter, bitte die aus der plugin.yaml erzeugte Dokumentation beachten.
+
 Infos zum web push Standard sind unter folgenden Links zu finden:
 
 [1] https://www.rfc-editor.org/rfc/rfc8030.txt
@@ -138,8 +140,8 @@ Web Interface
 
 Im Webinterface werden die Grundlegenden Parameter des Plugins angezeigt. Weiters ist dort eine Auflistung der Anzahl an
 Abonnenten pro Gruppe gezeigt. Über einen Button kann die Datenbank geleert werden. Achtung dadurch werden alle
-Abonnenten gelöscht und können nicht wiederhergestellt werden, jeder Client muss sich erneut Nachrichten Gruppen
-abonnieren.
+Abonnenten gelöscht und können nicht wiederhergestellt werden, jeder Client muss sich erneut zu Nachrichten Gruppen
+anmelden.
 
 
 Credits
