@@ -42,6 +42,7 @@ Bitte die Dokumentation lesen, die aus den Metadaten der plugin.yaml erzeugt wur
     grouplist:
     -   alarm
     -   info
+    varpath: /usr/local/smarthome/var
 
 Items
 ~~~~~

@@ -28,6 +28,14 @@ parameters:
             de: 'Nachrichten-Gruppen'
             en: 'Message groups'
 
+    varpath:
+        type: str
+        mandatory: True
+        default: "/usr/local/smarthome/var"
+        description:
+            de: 'Pfad zum SmarthomeNG var Verzeichnis (z.B. /usr/local/smarthome/var)'
+            en: 'Path to the SmarthomeNG var directory (ex. /usr/local/smarthome/var)'
+
 item_attributes:
     # Definition of item attributes defined by this plugin (enter 'item_attributes: NONE', if section should be empty)
     webpush_communication:
